@@ -4,6 +4,10 @@ const titleInput = document.querySelector('#title');
 const postsEl = document.querySelector('#posts');
 const htmlEl = document.querySelector('html');
 
+const setTheme = function() {
+  htmlEl.dataset.theme = localStorage.getItem('theme');
+}
+
 const renderPosts = function() {
   // Retrives data from localStorage if it exists.
   const data = localStorage.getItem('posts');
@@ -31,6 +35,7 @@ const toggleTheme = function() {
   } else {
     htmlEl.dataset.theme = 'dark';
   }
+  localStorage.setItem('theme', htmlEl.dataset.theme);
 }
 
 const handleSubmit = function(event) {
@@ -70,3 +75,5 @@ if (submitBtn) submitBtn.addEventListener('click', handleSubmit);
 if (modeBtn) modeBtn.addEventListener('click', toggleTheme);
 
 if (postsEl) renderPosts();
+
+setTheme();
